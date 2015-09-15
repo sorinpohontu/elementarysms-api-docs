@@ -1,1 +1,206 @@
-My Page
+<!DOCTYPE HTML><html><head><title>ElementarySMS API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 2.1.0"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          if(history && history.replaceState) {
+            history.replaceState({}, '', '#');
+          }
+        });
+      });
+    </script><style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item > .badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title > .methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group, .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>ElementarySMS API documentation <small>version 1</small></h1><p>http://elementarysms.example.com/api</p><h3 id="Welcome"><a href="#Welcome">Welcome</a></h3><p>Welcome to the <a href="http://elementarysms.com/" title="ElementarySMS" target="_blank"><strong>ElementarySMS</strong></a> RestAPI Documentation.</p><h3 id="authenticating-api-requests">Authenticating API requests</h3><hr><h3 id="base-url">Base URL</h3><blockquote><p>All API URLs referenced in this documentation start with the following base part:</p><pre><code>http://elementarysms.example.com/api
+</code></pre></blockquote><p>You need to replace <code>http://elementarysms.example.com</code> with your own URL of your <a href="http://elementarysms.com/" title="ElementarySMS" target="_blank"><strong>ElementarySMS</strong></a> installation.</p><hr><h3 id="data-formats">Data Formats</h3><blockquote><p>Unless otherwise specified, all API calls will expect and return results as JSON data format.</p></blockquote><hr><h3 id="sending-data-to-the-apis">Sending data to the APIs</h3><blockquote><p>By default, all API calls expect a JSON-formatted payload.</p></blockquote><p>Here is a sample <strong>cURL</strong> call for <em>/message/add</em>:</p><pre><code>curl -H "Content-Type: application/json" -X POST \
+-d &#39;{
+     "api-key" : "XXSSDDESSQQ",
+     "number": "+40722001002",
+     "message": "This is a message sent through ElementarySMS API.\nHave a nice day :)"
+    }&#39; \
+http://elementarysms.example.com/api/message/add
+</code></pre><hr><h4 id="receiving-data-from-the-apis">Receiving data from the APIs</h4><blockquote><p>By default, all API calls will return a JSON-formatted payload.</p></blockquote><p>Here is a sample response from <em>/message/add</em> call:</p><pre><code>{
+  "status": "success",
+  "uuid": "ea4b0fee-72ab-4d1f-9087-e8683ba355cf"
+}
+</code></pre><hr><h4 id="special-note-about-handling-new-lines">Special note about handling new lines</h4><blockquote><p>If you need to use a <strong>new line</strong> in your message body, replace the new line with <strong>\n</strong>.</p></blockquote><hr><h2 id="available-methods">Available methods</h2></div><div class="panel panel-default"><div class="panel-heading"><h3 id="message" class="panel-title">Message</h3></div><div class="panel-body"><div class="top-resource-description"><p>This method will handle a <em>message</em>.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_message_add"><span class="parent">/message</span>/add</a> <span class="methods"><a href="#message_add_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_message_add" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#message_add_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Add a new <strong>message</strong> for processing. <code>On success, the UUID of newly added message will be returned.</code></p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="message_add_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/message</span>/add</h4></div><div class="modal-body"><div class="alert alert-info"><p>Add a new <strong>message</strong> for processing. <code>On success, the UUID of newly added message will be returned.</code></p></div><ul class="nav nav-tabs"><li class="active"><a href="#message_add_post_request" data-toggle="tab">Request</a></li><li><a href="#message_add_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="message_add_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "properties": {
+    "api-key": { "type": "string" },
+    "number": { "type": "string" },
+    "message": { "type": "string" },
+    "device": { "type": "string" },
+    "schedule_at": { "type": "date" }
+  },
+  "required": [ "api-key", "number", "message" ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "api-key": "XXYYZZTTZZAA",
+  "number": "+40722001002",
+  "message": "Hello John Doe, welcome to our site !"
+}
+</code></pre></div><div class="tab-pane" id="message_add_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "status": "success",
+  "uuid": "ea4b0fee-72ab-4d1f-9087-e8683ba355cf"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "status": "error",
+  "message": "Invalid JSON data !"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "status": "error",
+  "message": "Invalid credentials !"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_message_status"><span class="parent">/message</span>/status</a> <span class="methods"><a href="#message_status_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_message_status" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#message_status_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Get status of a specific <strong>message</strong>.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="message_status_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/message</span>/status</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get status of a specific <strong>message</strong>.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#message_status_post_request" data-toggle="tab">Request</a></li><li><a href="#message_status_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="message_status_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "properties": {
+    "api-key": { "type": "string" },
+    "uuid": { "type": "string" }
+  },
+  "required": [ "api-key", "uuid" ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "api-key": "XXYYZZTTZZAA",
+  "uuid": "ea4b0fee-72ab-4d1f-9087-e8683ba355cf"
+}
+</code></pre></div><div class="tab-pane" id="message_status_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "description": "A canonical song",
+  "properties": {
+    "title":  { "type": "string" },
+    "artist": { "type": "string" }
+  },
+  "required": [ "title", "artist" ]
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#message">Message</a></li></ul></div></div></div></div></body></html>
