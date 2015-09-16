@@ -157,15 +157,14 @@ http://elementarysms.example.com/api/message/add
     "uuid": "ea4b0fee-72ab-4d1f-9087-e8683ba355cf"
 }
 </code></pre><h3 id="Date-and-Time-Format"><a href="#Date-and-Time-Format">Date and Time Format</a></h3><blockquote><p>JSON does not have a built-in date type. <code>Dates</code> are passed or retrieved as <a href="https://en.wikipedia.org/wiki/Unix_time" title="Unix Time" target="_blank"><strong>Unix Time</strong></a>.</p></blockquote><p>Here is a sample response from <em>/message/status</em> call:</p><pre><code>{
-    "e6a0ed30-5c48-11e5-b604-2a042924705f":
-    {
-        "device" : "359385052343557",
-        "status" : "delivered",
-        "added_at" : 1442390388,
-        "queued_at" : 1442390418,
-        "sent_at" : 1442390419,
-        "delivered_at" : 1442390437,
-        "sms_count" : "1"
+    "e6a0ed30-5c48-11e5-b604-2a042924705f": {
+        "device": "359385052343557",
+        "status": "delivered",
+        "added_at": 1442390388,
+        "queued_at": 1442390418,
+        "sent_at": 1442390419,
+        "delivered_at": 1442390437,
+        "sms_count": "1"
      }
 }
 </code></pre><h3 id="Common-HTTP-Error-Codes-and-Error-Messages"><a href="#Common-HTTP-Error-Codes-and-Error-Messages">Common HTTP Error Codes and Error Messages</a></h3><p><code>HTTP status code 400</code></p><pre><code>{
@@ -227,6 +226,17 @@ http://elementarysms.example.com/api/message/add
             "delivered_at": { "type" : "timestamp" },
             "sms_count": { "type" : "integer" }
     }
+  }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "e6a0ed30-5c48-11e5-b604-2a042924705f": {
+    "device": "359385052343557",
+    "status": "delivered",
+    "added_at": 1442390388,
+    "queued_at": 1442390418,
+    "sent_at": 1442390419,
+    "delivered_at": 1442390437,
+    "sms_count": "1"
   }
 }
 </code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><legend>Quick Reference</legend><ul class="nav nav-pills nav-stacked"><li><a href="#message">Message</a></li></ul></div></div></div></div></body></html>
